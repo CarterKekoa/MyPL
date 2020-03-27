@@ -1,0 +1,21 @@
+
+# very simple user-defined type tests
+
+type Type1
+   var x := 0
+   var y := 1
+end
+
+var t1 := new Type1
+print(concat("t1.x should be 0: ", itos(t1.x)))
+print("\n")
+print(concat("t1.y should be 1: ", itos(t1.y)))
+print("\n")
+
+set t1.x := 5
+set t1.y := 6
+print(concat("t1.x should now be 5: ", itos(t1.x)))
+print("\n")
+print(concat("t1.y should now be 6: ", itos(t1.y)))
+print("\n")
+

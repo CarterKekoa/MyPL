@@ -1,0 +1,42 @@
+
+# combos of bool expressions
+
+var x := 0
+var y := 1
+var z := 2
+
+print("test 1: ")
+if x < 1 then
+  print("pass\n")
+else
+  print("fail\n")
+end
+
+print("test 2: ")
+if x > 1 then
+  print("fail\n")
+else
+  print("pass\n")
+end
+
+print("test 3: ")
+if (x < y) and (y < z) then
+  print("pass\n")
+else
+  print("fail\n")
+end
+
+print("test 4: ")
+if (x > y) or (y > z) then
+  print("fail\n")
+else
+  print("pass\n")
+end
+
+print("test 5: ")
+if ((x > 1) and (y > 1)) or ((x <= y) and (x <= z)) then
+  print("pass\n")
+else
+  print("fail\n")
+end
+

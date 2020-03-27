@@ -1,0 +1,60 @@
+# built in functions
+
+print("Should print 5: ")
+print(itos(5))
+print("\n")
+
+print("Should print -3: ")
+print(itos(neg 3))
+print("\n")
+
+print("Should print 3.14: ")
+print(dtos(3.14))
+print("\n")
+
+print("Should print -3.14: ")
+print(dtos(neg 3.14))
+print("\n")
+
+print("Should print 5: ")
+print(itos(stoi("5")))
+print("\n")
+
+print("Should print 3.14: ")
+print(dtos(stod("3.14")))
+print("\n")
+
+print("Should print 3: ")
+print(itos(length("abc")))
+print("\n")
+
+
+
+
+# add concat
+print("Should print abcde: ")
+print(concat("ab", "cde"))
+print("\n")
+
+# add append
+print("Should print abc: ")
+print(append("ab", 'c'))
+print("\n")
+
+print("Should print a: ")
+print(append("", get(0, "abc")))
+print("\n")
+
+print("Should print b: ")
+print(append("", get(1, "abc")))
+print("\n")
+
+print("Should print c: ")
+print(append("", get(2, "abc")))
+print("\n")
+
+print("Should result in a runtime error: \n")
+get(3, "abc")
+
+
+

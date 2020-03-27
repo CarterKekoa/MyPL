@@ -1,0 +1,74 @@
+
+# ARITHMETIC EXPRESSIONS
+
+
+# integer expressions
+var x := 0
+
+set x := 4 + 2
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 8 - 2
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 2 * 3
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 12 / 2
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 2 + 3 + 1
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 10 - (3 + 1)
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 2 * (2 + 1)
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+set x := 18 / (2 + 1)
+print(concat("should be 6: ", itos(x)))
+print("\n")
+
+# double expressions
+var y := 0.0
+
+set y := 4.2 + 1.8
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 8.22 - 2.22
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 2.0 * 3.0
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 12.0 / 2.0
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 2.0 + 3.0 + 1.0
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 10.0 - (3.0 + 1.0)
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 2.0 * (2.5 + 0.5)
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+
+set y := 18.0 / (2.75 + 0.25)
+print(concat("should be 6.0: ", dtos(y)))
+print("\n")
+

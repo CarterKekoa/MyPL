@@ -1,0 +1,54 @@
+
+# additional user-defined type tests
+
+var a := 0
+
+type S1 
+  var x := 0
+  var y := a + 1
+end
+
+var s1 := new S1
+
+print(concat("should print 0: ", itos(s1.x)))
+print("\n")
+print(concat("should print 1: ", itos(s1.y)))
+print("\n")
+
+set a := 1
+
+set s1 := new S1
+
+print(concat("should print 0: ", itos(s1.x)))
+print("\n")
+print(concat("should print 2: ", itos(s1.y)))
+print("\n")
+
+set a := 2
+
+type S2
+  var s1 := new S1
+end
+
+var s2 := new S2
+
+print(concat("should print 0: ", itos(s2.s1.x)))
+print("\n")
+print(concat("should print 3: ", itos(s2.s1.y)))
+print("\n")
+
+type S3
+  var S2 s2 := nil
+end
+
+var s3 := new S3
+set s3.s2 := new S2
+set s3.s2.s1.x := 5
+
+print(concat("should print 5: ", itos(s3.s2.s1.x)))
+print("\n")
+print(concat("should print 3: ", itos(s3.s2.s1.y)))
+print("\n")
+
+
+

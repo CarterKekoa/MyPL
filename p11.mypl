@@ -1,0 +1,37 @@
+
+# very basic function test
+
+fun nil println(string s)
+  print(concat(s, "\n"))
+end
+
+fun int f1(int x, int y)
+  var z := x + y
+  print("in f1\n")
+  return z
+end
+
+fun string f2(string x)
+  print("in f2, x = ")
+  print(x)
+  print("\n")
+  return concat(x, x)
+end
+
+fun string f3(string x)
+  set x := f2(x)
+  print("in f3, after f2, x = ")
+  print(x)
+  print("\n")
+  return x
+end
+
+var r1 := f1(3, 4)
+println(concat("f1(3, 4) should be 7: ", itos(r1)))
+
+var r2 := f3("ab")
+println(concat("f3(ab) should be abab: ", r2))
+
+
+
+
