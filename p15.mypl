@@ -1,0 +1,31 @@
+#check the 'not' operator
+var x := true
+print("test 1: ")
+set x := not x
+if x = false then
+    print("pass \n")
+else
+    print("fail \n")
+end
+
+#operator tests and boolean tests
+var y := not x
+print("test 2: ")
+if y = true then
+    var a := 0
+    var b := 5
+    var c := 60
+    if a <= b then
+        set a := c / b
+        set c := c / (b * 2)
+        print("pass \n")
+    else
+        print("fail \n")
+    end
+else
+    print("fail \n")
+end
+
+#make sure cant mod by 0 case 
+print("test 3: 5 % 0, should result in a runtime error: ")
+print(itos(5 % 0))
