@@ -67,7 +67,6 @@ public class Interpreter implements Visitor {
   
   public void visit(final ReturnStmt node) throws MyPLException {
     debug("ReturnStmt");
-    // TODO: HW7
     node.returnExpr.accept(this);
 	  Object returnVal = currVal;
 	  throw new MyPLException(returnVal);
@@ -130,7 +129,6 @@ public class Interpreter implements Visitor {
 
   public void visit(final TypeDeclStmt node) throws MyPLException {
     debug("TypeDeclStmt");
-    // TODO: HW7
     symbolTable.addName(node.typeId.lexeme());
     symbolTable.setInfo(node.typeId.lexeme(), List.of(symbolTable.getEnvironmentId(), node));
   }
@@ -138,7 +136,6 @@ public class Interpreter implements Visitor {
 
   public void visit(final FunDeclStmt node) throws MyPLException {
     debug("FunDeclStmt");
-    // TODO: HW7
     symbolTable.addName(node.funName.lexeme());
     symbolTable.setInfo(node.funName.lexeme(), List.of(symbolTable.getEnvironmentId(), node));
   }
@@ -325,7 +322,6 @@ public class Interpreter implements Visitor {
   
   public void visit(final NewRValue node) throws MyPLException {
     debug("NewRValue");
-    // TODO: HW7
     List<Object> typeInfo = (List<Object>)symbolTable.getInfo(node.typeId.lexeme());
 	  int currEnv = symbolTable.getEnvironmentId();
 	  symbolTable.setEnvironmentId((int)typeInfo.get(0));
@@ -352,42 +348,40 @@ public class Interpreter implements Visitor {
     if (builtIns.contains(funName)){
       callBuiltInFun(node);
     }else{
-    // TODO: User-Defined Functions for HW7
-    List<Object> argumentVals = new ArrayList<>();
-    List<Object> functionVals = (List<Object>)symbolTable.getInfo(funName);
-    int currentEnv = symbolTable.getEnvironmentId();
-    for(Expr argument : node.argList) {
-      argument.accept(this);
-      argumentVals.add(currVal);
-    }
-    symbolTable.setEnvironmentId((Integer)functionVals.get(0));
-    symbolTable.pushEnvironment();
-    ArrayList<FunParam> funParams = ((FunDeclStmt)(functionVals.get(1))).params;
-    for(int i = 0; i < funParams.size(); i++){
-      symbolTable.addName(((funParams.get(i)).paramName).lexeme());
-      symbolTable.setInfo(((funParams.get(i)).paramName).lexeme(), argumentVals.get(i));
-    }
-    StmtList funStmtList = ((FunDeclStmt)(functionVals.get(1))).stmtList;
-    try {
-      ((FunDeclStmt)(functionVals.get(1))).stmtList.accept(this);
-    }catch (MyPLException e) {
-      if (!e.isReturnException()){
-        throw e;
+      List<Object> argumentVals = new ArrayList<>();
+      List<Object> functionVals = (List<Object>)symbolTable.getInfo(funName);
+      int currentEnv = symbolTable.getEnvironmentId();
+      for(Expr argument : node.argList) { //
+        argument.accept(this);
+        argumentVals.add(currVal);
       }
-      currVal = e.getReturnValue();
-    }
-    symbolTable.popEnvironment();
-    symbolTable.setEnvironmentId(currentEnv);
-
+      symbolTable.setEnvironmentId((Integer)functionVals.get(0));
+      symbolTable.pushEnvironment();
+      ArrayList<FunParam> funParams = ((FunDeclStmt)(functionVals.get(1))).params;
+      for(int i = 0; i < funParams.size(); i++){ //while not at the end of the size
+        symbolTable.addName(((funParams.get(i)).paramName).lexeme());
+        symbolTable.setInfo(((funParams.get(i)).paramName).lexeme(), argumentVals.get(i));
+      }
+      StmtList funStmtList = ((FunDeclStmt)(functionVals.get(1))).stmtList;
+      try {
+        ((FunDeclStmt)(functionVals.get(1))).stmtList.accept(this);
+      }catch (MyPLException e) {
+        if (!e.isReturnException()){
+          throw e;
+        }
+        currVal = e.getReturnValue();
+      }
+      symbolTable.popEnvironment();
+      symbolTable.setEnvironmentId(currentEnv);
     }
   }
 
   
   public void visit(final IDRValue node) throws MyPLException {
     String varName = node.path.get(0).lexeme();
-    if(node.path.size() > 1){
+    if(node.path.size() > 1){ //if path is larger that 1
       Map<String, Object> obj = (Map<String, Object>)heap.get((Integer)symbolTable.getInfo(varName));
-      for(int i = 1; i < node.path.size() - 1; i++){
+      for(int i = 1; i < node.path.size() - 1; i++){ // while not at the end of the node size, minus one becasue return value
         varName = node.path.get(i).lexeme();
         int oid = (Integer)obj.get(varName);
         obj = (Map<String, Object>)heap.get(oid); 
@@ -408,8 +402,9 @@ public class Interpreter implements Visitor {
       currVal = -(Double)currVal;
   }
 
-  
+  //------------------
   // helper functions
+  //------------------
 
   
   private void callBuiltInFun(final CallRValue node) throws MyPLException {
