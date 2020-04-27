@@ -149,3 +149,12 @@ set s := append("ab", ‘c’) #add char to end of string
 ⟨idrval⟩ ::= ID ( DOT ID )∗ | ID LPAREN ⟨exprlist⟩ RPAREN
 ⟨exprlist⟩ ::= ⟨expr⟩ ( COMMA ⟨expr⟩ )∗ | ε
 ```
+**How to Run it**
+Complile in Java
+```
+javac HW6.java
+```
+Run the different files with MyPL code written in Python to be interpreted.
+```
+java HW6 p1.mypl
+```
